@@ -7,8 +7,6 @@ body{
 
 /* ****************HEADER START**************** */
 header{
-    position: fixed;
-
     display: flex;
     align-items: center;
     justify-content: right;
@@ -62,7 +60,101 @@ border: none;
 /* ****************HEADER END**************** */
 
 /* ****************MAIN START**************** */
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
+.main-content-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+/*search bar start*/
+.search-bar-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 584px;
+    min-width: 483px;
+    height: 46px;
+    border-radius: 50px;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.232);
+
+}
+
+.search-bar-container button{
+    background-color: transparent;
+    border: none;
+}
+.search-bar-container img{
+    align-items: center;
+    justify-content: center;
+}
+
+.search-button{
+    padding-left: 14px;
+    padding-right: 13px;
+}
+
+.search-keyboard-button,
+.voice-search-button,
+.lens-search-button{
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.search-button img,
+ .search-keyboard-button img{
+    width: 20px;
+}
+
+.voice-search-button img, 
+.lens-search-button img{
+    width: 24px;
+
+}
+
+.search-bar-container input{
+    height: 27px;
+    width: 403px;
+
+    border: none;
+    outline: none;
+
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    
+}
+/*search bar end*/
+
+/*extra buttons below searchbar start*/
+
+.extra-buttons-container{
+    padding-top: 18px;
+}
+
+.extra-buttons-container button{
+    margin: 11px 4px 11px 4px;
+    padding: 0 16px 0 16px;
+    height: 36px;
+
+    background-color: rgb(248, 249, 250);
+    color: rgb(60, 64, 67);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    border: none;
+}
+/*extra buttons below searchbar end*/
 
 
 /* ****************MAIN END**************** */
