@@ -166,9 +166,15 @@ main{
 
     width: 584px;
     height: 46px;
+
+    border: 1px solid rgb(218, 220, 224);
     border-radius: 50px;
     box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.232);
 
+}
+
+.search-bar-container:hover{
+    border-color: transparent;
 }
 
 .search-bar-container button{
@@ -303,6 +309,7 @@ main{
 .extra-buttons-container button:hover {
     cursor: pointer;
     border-color: #E8E8E9;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.153);
 }
 
 .extra-buttons-container button:active {
