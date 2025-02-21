@@ -41,26 +41,85 @@ background-color: transparent;
 border: none;
 }
 
-.google-apps-button{
+.header-button:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.google-apps-button,
+.email-pfp {
+    position: relative;  /* tooltip için pozisyonlama */
+}
+
+.google-apps-button::after,
+.email-pfp::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 100%;  /* elementin altında */
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;  /* 5px aşağıda */
+    padding: 8px 12px;
+    background-color: #4F5355;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    border-radius: 4px;
+    
+    /* Görünürlük ayarları */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+/* Google Apps için özel stil */
+.google-apps-button::after {
+    white-space: nowrap;  /* tek satır için */
+}
+
+/* Email profili için özel stil */
+.email-pfp::after {
+    white-space: pre-line;  /* alt alta yazmak için */
+}
+
+.google-apps-button:hover::after,
+.email-pfp:hover::after {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0.5s;  /* 2 saniye yerine 0.5 saniye yapalım */
+}
+
+.google-apps-button,
+.email-pfp{
     width: 40px;
     height: 40px;
     padding: 4px;
     border: none;
     border-radius: 50%;
-    background-color: transparent
-    
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.email-pfp img {
+    border-radius: 50%;
+}
+
 .google-apps-button img{
     width: 24px;
     height: 24px;
     filter: invert(22%) sepia(6%) saturate(80%) hue-rotate(180deg);
 }
 
-.email-pfp{
-    border-radius: 50%;
-    padding: 4px;
-    margin-left: 7px;
+.google-apps-button:hover,
+.email-pfp:hover {
+    cursor: pointer;
+    background-color: #E8E9E8;
 }
+
+
 
 /* ****************HEADER END**************** */
 
@@ -88,8 +147,10 @@ main{
     padding: 20px;
 }
 
-.google-logo-container{
-    padding-top: 51px;
+@media screen and (min-width: 1500px) {
+    .google-logo-container {
+        padding-top: 51px;
+    }
 }
 
 /*search bar start*/
@@ -121,9 +182,64 @@ main{
 
 .search-keyboard-button,
 .voice-search-button,
-.lens-search-button{
-    padding-left: 8px;
-    padding-right: 8px;
+.lens-search-button {
+    position: relative;  /* tooltip için */
+}
+
+.search-keyboard-button::after,
+.voice-search-button::after,
+.lens-search-button::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 120%;  /* üçgen için biraz daha aşağı */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 12px;
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+    border: 1px solid #FFFFFF;
+    border-radius: 4px;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.232);
+    
+    /* Görünürlük ayarları */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+/* Üçgen çıkıntı */
+.search-keyboard-button::before,
+.voice-search-button::before,
+.lens-search-button::before {
+    content: '';
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+    
+    /* Görünürlük ayarları */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+/* Hover efektleri */
+.search-keyboard-button:hover::after,
+.voice-search-button:hover::after,
+.lens-search-button:hover::after,
+.search-keyboard-button:hover::before,
+.voice-search-button:hover::before,
+.lens-search-button:hover::before {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0.5s;
 }
 
 .search-button img,
@@ -149,12 +265,18 @@ main{
     font-weight: 400;
     
 }
+
+.search-bar-container button:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
 /*search bar end*/
 
 /*extra buttons below searchbar start*/
 
 .extra-buttons-container{
     padding-top: 18px;
+    
 }
 
 .extra-buttons-container button{
@@ -167,7 +289,23 @@ main{
     font-family: Arial, sans-serif;
     font-size: 14px;
     font-weight: 400;
-    border: none;
+
+    border-radius: 3px;
+    border: 1px solid transparent;
+}
+
+.extra-buttons-container button:hover {
+    cursor: pointer;
+    border-color: #E8E8E9;
+}
+
+.extra-buttons-container button:active {
+    border: 1px solid #4285f4;  /* Google'ın standart mavi rengi */
+}
+
+.footer-buttons-container button:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 /*extra buttons below searchbar end*/
@@ -194,7 +332,7 @@ footer button{
     font-weight: 400;
 
     background-color: transparent;
-    padding: 15px;
+    padding: 15px 15px 30px 15px;
     height: 16px;
 }
  
@@ -215,7 +353,7 @@ footer button{
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 15px;
+ 
 }
 
 .footer-buttons-row-1,
@@ -229,40 +367,95 @@ footer button{
 
 .footer-buttons-row-2 {
     display: flex;
+    flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
     flex: 1;
 
-    padding: 15px;
+    
 }
-
-@media screen and (max-width: 1200px){
+    @media screen and (max-width: 1200px){
  
-    .footer-buttons-row-2 {
-        order: -1;
+        .footer-buttons-row-2 {
+            order: -1;
+        }
+    
+        .footer-buttons-row-1 {
+            order: 0;
+        }
+    
+        .footer-buttons-row-3 {
+            order: 0;
+        }
     }
-
-    .footer-buttons-row-1 {
-        order: 0;
-    }
-
-    .footer-buttons-row-3 {
-        order: 1;
-    }
-}
-/* Responsive tasarım için medya sorgusu */
-@media screen and (max-width: 1200px) {
-    .footer-buttons-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
+    /* Responsive tasarım için medya sorgusu */
+    @media screen and (max-width: 1200px) {
+        .footer-buttons-container {
+            flex-direction: column;
+            align-items: center;
+           
     }
 
     .footer-buttons-row-1,
     .footer-buttons-row-3 {
         justify-content: center;
     }
+  
 }
 
 /* ****************FOOTER END**************** */
 /* ****************FOOTER END**************** */
+
+@media screen and (max-width: 640px) {
+    .google-logo-container img {
+        transform: scale(0.8);  /* logo boyutu %80'e küçülür */
+    }
+
+    .search-bar-container {
+        transform: scale(0.8);
+        width: 467px;  /* 584px * 0.8 */
+        margin: 0 auto;  /* yatayda ortalama */
+    }
+
+    .search-bar {
+        width: 322px;  /* 403px * 0.8 */
+    }
+
+    .extra-buttons-container {
+        transform: scale(0.8);
+        padding-top: 14px;  /* 18px * 0.8 */
+    }
+
+    .extra-buttons-container button {
+        margin: 9px 3px;  /* 11px 4px * 0.8 */
+        padding: 0 13px;  /* 0 16px * 0.8 */
+        height: 29px;  /* 36px * 0.8 */
+    }
+}
+
+/* Daha küçük ekranlar için ek küçültme */
+@media screen and (max-width: 480px) {
+    .google-logo-container img {
+        transform: scale(0.6);
+    }
+
+    .search-bar-container {
+        transform: scale(0.6);
+        width: 350px;  /* 584px * 0.6 */
+    }
+
+    .search-bar {
+        width: 242px;  /* 403px * 0.6 */
+    }
+
+    .extra-buttons-container {
+        transform: scale(0.6);
+        padding-top: 11px;  /* 18px * 0.6 */
+    }
+
+    .extra-buttons-container button {
+        margin: 7px 2px;  /* 11px 4px * 0.6 */
+        padding: 0 10px;  /* 0 16px * 0.6 */
+        height: 22px;  /* 36px * 0.6 */
+    }
+}
